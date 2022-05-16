@@ -1,0 +1,276 @@
+---
+title: |
+  | 
+  |
+  | **Introduction and theory**
+  |
+  |
+  | Can reputation drive cooperation? The effect of network control
+  |
+  |
+  |
+author: |
+  | Thom Volker (5868777)^[I gratefuly acknowledge Davide Barrera, Gary Bolton, Vincent Buskens, Karen Cook, Rense Corten, Vincenz Frey, Elena Katok, Nynke van Miltenburg, Axel Ockenfels, Werner Raub, Stephanie Rosenkranz, Arthur Schram, Ingrid Seinen, Joris van der Veer and Jeroen Weesie for sharing their research data. Also, I wish to thank Vincent Buskens, Werner Raub and Irene Klugkist for their valuable comments and supervision.]
+  |
+  |
+  |
+  | Supervisors: Prof. dr. ir. Vincent Buskens & Prof. dr. Werner Raub
+  |
+  |
+  | *Sociology and Social Research Master's programme*
+  |
+  | *Utrecht University*
+  |
+  |
+  |
+  | `r format(Sys.time(), '%B %d, %Y')`
+  |
+  |
+  | `r paste0("Word count: ", wordcountaddin::word_count())`
+  | 
+  |
+  |
+  | Journal of preference: Sociological Methods & Research
+  |
+  |
+  |
+#abstract: 'How cooperation between human beings emerges and prevails is one of the longest standing research questions in the social sciences. Game-theoretical predictions render cooperation between rational and selfish individuals in isolated social dilemmas impossible. However, taking relationships between the actors involved (dyadic embeddedness) and relationships between the actors involved and third-parties (network embeddedness) into account, cooperation between rational and selfish individuals is possible. Here, theoretical and experimental research on dyadic and network embeddedness is reviewed, with a specific focus on the mechanism called "control", which reflects future sanction opportunities of the actors involved. It is shown that embeddedness in general, and control opportunities specifically, indeed foster cooperation, although this effect is more pronounced and more consistently present in dyadically embedded interactions.'
+output:
+  bookdown::pdf_document2:
+    number_sections: true
+    df_print: kable
+    highlight: pygments
+    toc: true
+mainfont: Calibri
+sansfont: Calibri
+linestretch: 2
+fontsize: 11pt
+params:
+  !r Sys.setlocale("LC_TIME", "C")
+indent: true
+tables: true
+header-includes:
+  - \usepackage{caption,multirow,array,float}
+  - \usepackage{wrapfig}
+  - \usepackage{booktabs}
+  - \usepackage{blkarray}
+  - \usepackage{amsmath}
+  - \usepackage{multicol}
+  - \usepackage{array}
+  - \DeclareCaptionLabelSeparator*{spaced}{\\[2ex]}
+  - \captionsetup[table]{textfont=it,format=plain,justification=justified,
+                         singlelinecheck=false,labelsep=spaced,skip=0pt}
+  - \usepackage[left]{lineno}
+bibliography: "../../thesis.bib"
+csl: "../../american-sociological-association.csl" # "/Users/thomvolker/Documents/styles/nature.csl"  #
+link-citations: yes
+linkcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\linenumbers
+
+# Introduction
+
+Social dilemmas manifest themselves throughout everyday life. When you plan to have dinner in a restaurant this Monday, you will have to trust the chef that the ingredients are fresh and of good quality. If this is indeed the case, you will enjoy an exquisite dinner that you happily pay for. The chef, who had no chance to get rid of the entire bulk of food ordered before the weekend, however, prefers to sell the leftovers, rather than tossing these into the bin [@bourdain2013kitchen]. If you are not particularly a connoisseur, you might not even notice until you experience the discomfort later that night. Foreseeing this unpleasant situation, you may cancel your reservation and decide to cook dinner yourself. This decision would leave you, who fancied a fabulous dinner over your home-cooked meal, and the chef, who preferred to have more customers, worse off compared to the situation in which you would dine in the restaurant that solely uses the best ingredients, qualifying the situation as a social dilemma [@ostrom_behavioral_1998; @kollock_social_1998]. 
+
+As outlined by @buskens_raub_embedded_2002, such dilemmas are exemplary of many economic or social exchange situations. In many buyer-seller relations, for instance, the quality of the product that is provided cannot be evaluated before the product is paid for, allowing the seller to sell a low-quality product. The buyer may anticipate on this behavior, and refuses to engage in the transaction in the first place. Consequently, the collective returns will be lower as compared to the situation in which the transaction materialized. As an example of social exchange [@blau1964exchange; @Cook2013], someone may help a neighbor, expecting that this favor will be returned in the future. However, when the time is there, it is in the neighbor's self-interest to not provide help anymore, because it is costly in terms of time and other resources. If one anticipates on this opportunistic action, help may not be provided in the first place, leaving both actors worse off than they could have been. These dilemma situations show that the actors involved can achieve a collectively better outcome, but that this outcome may not be reached because at least one of the actors has an incentive to act otherwise. Hence, solving such dilemma situations can improve the efficiency of many social and economic interactions [@dasgupta_1988; @buskens_raub_embedded_2002].
+
+<!-- [[Ik overweeg om de volgende paragraaf sterk in te korten (omdat dit grotendeels terugkomt in de theorie-sectie), en enkel te zeggen dat in de voorgaande voorbeelden de persoon in de rol van trustee incentives heeft om het vertrouwen van degene in de rol van trustor te misbruiken. Wanneer de interactie plaatsvindt onder sociale isolatie, en contractuele afspraken niet mogelijk zijn, laten theoretische analyses zien dat vertrouwen moeilijk te bereiken kan zijn. Dat zouden dan waarschijnlijk drie of vier zinnen zijn, en kan de alinea over het effect van inbedding hier direct op volgen. Dan komt Coleman's beschrijving van een Trust problem in de theorie-sectie, met direct daarna de beschrijving van de payoffs en de extensive form.]] -->
+
+The examples resemble a trust problem in the sense of @coleman_foundations_1990. Coleman distinguishes between a trustor, resembling the guest, the buyer or the person who helps a neighbor, and a trustee, like the chef, the seller or the neighbor. If the trustor does not place trust, the trustee has no opportunity to honor or abuse trust, and the interaction ends. If the trustor is trustful and places trust, the trustee may honor or abuse trust (i.e., decide whether to act trustworthy). For both the trustor and the trustee, placing and honoring trust is preferred over not placing trust. However, the trustee prefers the outcome of abused trust over the outcome of honored trust, which would leave the trustor worse off than if no trust was placed. A trustor might anticipate on the trustee's incentives to abuse trust, and therefore withhold trust. Additionally, @coleman_foundations_1990 remarks that the trustor cannot rely on "real commitment", in the sense of contractual agreements. Note that in many transactions, specifying a contract that covers all possible contingencies is costly or infeasible [see @dasgupta_1988 for a similar argument].
+
+The trust problem can be analyzed in a game-theoretical framework using the Trust Game [e.g., @camerer_weigelt_sequential_1988; @dasgupta_1988]. Much in line with the previous sketch of a trust problem, such an analysis shows that trust is difficult to achieve in isolated encounters [@buskens_raub_embedded_2002; @buskens_raub_handbook_2013]. Similar results hold for a wide variety of other games, such as the Prisoner's Dilemma, the Helping Game or the Public Goods Game, which can be used to represent different dilemma situations. In these games, pro-social behavior is generally referred to as cooperation rather than trust, while distrust is generally referred to as defection. However, many everyday interactions are hardly isolated encounters, as they are often embedded in some social context [@granovetter_economic_1985]. People may go to the same restaurant or the same store repeatedly or may know other customers as well. People have recurring interactions with their neighbors and others who know these neighbors. Embeddedness operates on two different levels: the level of the dyad, which refers to the same two actors interacting repeatedly, and the level of the network, which refers to two actors interacting with common third parties as well [e.g., @buskens_raub_embedded_2002; @buskens_raub_handbook_2013]. On both of these levels, embeddedness can foster trustful and trustworthy behavior through two mechanisms: learning and control [@buskens_raub_embedded_2002; @buskens_raub_handbook_2013; @buskens2018trust; @yamagishi_yamagishi_trust_1994]. 
+
+When people are embedded, they can learn about their partner's past actions through own experiences or through experiences of their acquaintances. This information may be useful for inferring how one's partner will behave in the current interaction, so that one can adapt one's own behavior accordingly. Obviously, no one wants to consume goods of inferior quality, and it is unlikely that someone who does not keep one's promises can count on much leniency on behalf of the neighborhood. Yet, if you have had many good experiences with a restaurant, or you know of others who had good experiences, you may be more inclined to eat there as well. Theoretical as well as empirical support for such learning effects have been well documented in the sociological and economic literature, both under dyadic and network embeddedness (see @buskens_raub_veer_triads_2010, @camerer_weigelt_sequential_1988, @neral_ochs_sequential_1992, @anderhub_repeated_trust_2002, @mao_resilient_cooperators_2017 and @embrey_etal_cooperation_2018 for dyadic learning effects; and see @seinen_schram_social_2006, @engelmann_firschbacher_2009, @buskens_raub_veer_triads_2010, @bolton_electronic_2004 and @wedekind_milinski_2000 for network learning effects).
+
+The control mechanism refers to the fact that the trustee's long-term incentives are partly under control of the trustor [@buskens_raub_embedded_2002]. When deciding how to behave, people have to take into account that their behavior now will affect their reputation, which affects how others will treat them in the future. Specifically, those who take advantage of others today can be sanctioned in the future, for example because they will not be helped or trusted anymore, while those who act kind today can be rewarded by helping them in the future. Both sanctions and rewards can be implemented by the person towards whom the behavior was directed in the first place (dyadic control), but this person might also inform others who can then base their own future behavior on this information (network control). You may, for instance, return to a restaurant you have had good experiences with, but you could also recommend this place to others. Hence, if the long-term consequences of a poor reputation outweigh the short-term gains of opportunistic behavior, it might be beneficial to behave accordingly. Theoretical as well as empirical results show that cooperative behavior is more likely when people have future interactions with the same partner, which demonstrates the presence of dyadic control effects [@dal_bó_cooperation_2005; @dal_bó_fréchette_evolution_2011; @dal_bó_fréchette_determinants_2018; @embrey_etal_cooperation_2018; @buskens_raub_veer_triads_2010]. Yet, despite similar theoretical results for dyadic and network control effects [e.g., @kandori_social_1992; @raub_weesie_reputation_1990], the empirical evidence is much more ambiguous for network control effects [@bolton_electronic_2004; @corten_etal_reputation_2016; @miltenburg_buskens_triads_2012; @buskens_raub_veer_triads_2010].
+
+The first goal of this paper is to get a clearer picture of the empirical evidence concerning network control effects, using the data on network embeddedness from multiple studies. Although all of these studies assessed network embeddedness in some form, only part of these studies assessed network control effects, and an even smaller subset found evidence for such effects. We will first statistically summarize the empirical evidence on network control effects by reanalyzing the data from a larger set of past studies. Additionally, some empirical evidence suggests a difference in network control effects according to the role of an actor. Some studies showed that network control opportunities had an effect on the trustworthiness of those in the position to exploit their partner (i.e., the trustees), but not on the trustfulness of those who were not in this position [i.e., the trustors\; @barrera_buskens_third_2009; @buskens_raub_veer_triads_2010; @frey_buskens_investments_2019]. Therefore, our second goal is to explore and quantify whether there is indeed more evidence for network control effects for trustees than for trustors. These topics have not been addressed in all experimental studies under consideration, and we will thus reanalyze the data collected from past studies using a consistent analysis plan. 
+
+The included studies differ considerably with respect to experimental conditions, such as the type of game (e.g., Trust Game, Investment Game, Prisoner's Dilemma and Helping Game), network size, number of transaction partners and duration of the game. Yet, all these studies assessed network embeddedness and allow to test for network control effects. Hence, although not explicitly designed as such, these studies can be considered conceptual replications. Conceptual replications allow to assess the validity of research findings by investigating whether conclusions hold under alternative conditions, using varying measurement instruments or operationalizations [@nosek_scientific_2012]. While previous research has particularly stressed the importance of exact, direct or close replications, which address the statistical reliability of research findings [e.g., @camerer2016evaluating; @camerer2018evaluating; @klein_etal_replicability_2014; @open_science_collab_2015; @nosek_replicability_review_2021], conceptual replications add to direct replications by using multiple research designs with different strengths and weaknesses [@lawlor_triangulation_2017; @munafo_robust_2018]. A robust line of evidence that allows for greater generalizability is built by combining various ways of testing the same hypotheses, using different sources of data and different methodologies and hence benefits from the synthesis of multiple conceptual replications [e.g., @buskens_raub_handbook_2013; @munafo_robust_2018; @lawlor_triangulation_2017; @jackson_cox_experimental_2013]. However, conventional approaches such as meta-analysis do not allow for the resulting heterogeneity between studies [@lipsey_wilson_2001; @sutton_bayesian_meta2001; @cooper_handbook_2009]. To overcome these problems, we will use a novel method called Bayesian Evidence Synthesis [@kuiper_combining_2013]. 
+
+Bayesian Evidence Synthesis (*BES*) is built upon the foundation of the Bayes Factor [@kass_raftery_bayes_factors_1995]. *BES* allows researchers to pool evidence for a specific hypothesis over multiple studies, even if their designs differ. Using *BES*, the evidence in favor of a network control effect over these studies can be summarized statistically. In every study, a hypothesis on the effect of control through network embeddedness can be constructed, and its support can be quantified using a Bayes Factor ($BF$). The study-specific $BF$'s can subsequently be combined to quantify the overall amount of evidence for the overarching hypothesis that network control fosters trust, regardless of the study-specific differences with regard to design and operationalizations of key variables. Rather than pooling effect sizes, *BES* allows to quantify the evidence over studies in favor of a more general scientific theory, and provides the relative amount of support for the hypotheses under consideration over all data combined. Hence, besides contributing substantively, we aim to contribute methodologically, by outlining how *BES* can be used to statistically summarize the evidence in favor of a hypothesis over conceptual replications, and how this statistical synthesis of results should be interpreted.
+
+In the upcoming section, we will outline the theoretical foundations of network control effects. In the third section, we will shortly describe the studies that are incorporated in our synthesis. Subsequently, we will outline the methodological foundation of *BES* and describe how this method should be applied. In the final sections, we will apply *BES* to the data collected in the studies that are considered, and discuss our empirical and methodological findings. 
+
+
+
+
+<!-- Ultimately, this study aims to address both empirical and methodological issues. So far, no attempt has been made to statistically summarize the findings on the network control hypothesis. In fact, only few studies explicitly addressed the network control hypothesis. In the current study, data from varying past experiments (see Table \@ref(tab:studies-table)) will be reanalyzed using a consistent analysis plan, to summarize the evidence in favor of the network control hypothesis quantitatively. We will expand on the original analyses to get a more complete picture of the network control hypothesis. Second, although the eight studies included in this paper are not explicitly designed as such, they can be considered conceptual replications. While previous research has particularly stressed the importance of exact, direct or close replications, conceptual replications have the advantage that they do not rely on a particular design. A robust line of evidence that allows for greater generalizability is necessarily built by combining various ways of testing the same hypotheses, using different sources of data and different methodologies and hence benefits from synthesis of multiple conceptual replications [e.g., @buskens_raub_handbook_2013; @munafo_robust_2018; @lawlor_triangulation_2017; @jackson_cox_experimental_2013]. It will be outlined how *BES* should be applied to statistically summarize the evidence in favor of a hypothesis over such conceptual replications, and how the results of such an analysis should be interpreted.  -->
+
+
+
+<!-- To answer these research questions, we will use a novel method called Bayesian Evidence Synthesis [@kuiper_combining_2013]. Bayesian Evidence Synthesis (*BES*) is built upon the foundation of the Bayes Factor [@kass_raftery_bayes_factors_1995]. This method allows researchers to pool evidence for a specific hypothesis over multiple studies, even if the studies have varying study designs designs. This flexibility is required, because the studies considered differ considerably with respect to the experimental conditions, such as the type of game, the network size, the amount of variation in transaction partners and the number of rounds. Due to this variation, classical meta-analytic approaches are infeasible [@lipsey_wilson_2001; @sutton_bayesian_meta2001; @cooper_handbook_2009]. However, all studies under consideration studied network embeddedness and allow to test for control effects. Using *BES*, the evidence in favor of a network control effect over these studies can be summarized statistically. In every study, a hypothesis on the effect of control through network embeddedness can be constructed, and it's support can be quantified using a Bayes Factor ($BF$). The study-specific $BF$'s can subsequently be combined to quantify the overall amount of evidence for the overarching hypothesis that network control fosters trust, regardless of the study-specific differences with regard to design and operationalizations of key variables. Hence, rather than pooling effect sizes, *BES* allows to quantify the evidence over studies in favor of a more general scientific theory.  -->
+<!-- Although the studies under consideration are not explicitly designed as such, they can be considered conceptual replications. While previous research has particularly stressed the importance of exact, direct or close replications, conceptual replications have the advantage that they do not rely on a particular design. A robust line of evidence that allows for greater generalizability is necessarily built by combining various ways of testing the same hypotheses, using different sources of data and different methodologies and hence benefits from synthesis of multiple conceptual replications [e.g., @buskens_raub_handbook_2013; @munafo_robust_2018; @lawlor_triangulation_2017; @jackson_cox_experimental_2013]. We thus aim  -->
+
+
+# Control effects on trust: The effect of network control
+
+<!-- [[In de volgende alinea twijfel ik een beetje of ik de payoffs in de trust game moet introduceren. Vanuit het perspectief om 'technicalities' zoveel mogelijk te vermijden deed ik het vooralsnog niet, maar het zou de beschrijving van de karakteristieken van de verschillende studies wellicht makkelijker maken.]] -->
+
+<!-- TO DO: Intro - explicietere focus op wetenschappelijk belang in intro - waarom zijn social dilemma's belangrijk als onderzoeksobject (omdat problemen van social en economic exchange relevant zijn (dit punt wordt niet gemaakt) + opmerking waarom embeddedness belangrijk is (bijvoorbeeld door niet alleen op contracten focussen)) -->
+
+<!-- Ook: nuancering wat willen we testen: evidentie voor en tegen hypotheses, of evidentie voor verschillen tussen verschillende effecten -->
+<!-- To do lijst meesturen als appendix -->
+<!-- welke actoren in welke conditie is meer evidentie. opbrengst: evidentie van verschillende hypothesen vergelijken -->
+<!-- begin thesis ingaan op verschil vergelijking evidentie voor hypothesen, of vergelijking sterkte van effecten. in deze thesis: eerste punt -->
+<!-- vervolgonderzoek -> sterkte van effecten -->
+<!-- Meer uitwijden over BES (wat geeft BES precies als uitkomst - kwantificeren en vergelijken van sterkte evidentie (niet effecten)) -->
+<!-- Meer uitwijden over trust game -->
+<!-- Verschillende spellen: voor welke actoren overtuigendere evidentie (is er een effect van sequentieel gedrag?). Welke van deze argumenten gelden ook in de prisoner's dilemma -->
+
+We will first introduce the Trust Game as a formal representation of the social dilemmas outlined in the introduction, and use it to theorize about control effects. We will restrict ourselves to an informal discussion of control effects, while referring to game-theoretical foundations of our arguments. With only small modifications, similar reasoning can be used to theoretically analyze different dilemma situations that can be represented by different games, such as the Investment Game, Prisoner's Dilemma and Helping Game. Because of these similarities, we will not explicitly formulate theoretical arguments for network control effects in these games, but we will address the expectations that can be derived from such theoretical arguments.
+
+## The Trust Game
+
+The standard Trust Game in Figure \ref{TG} captures the core elements of the dilemma situations sketched in the introduction [e.g., @camerer_weigelt_sequential_1988; @dasgupta_1988]. The Trust Game involves two actors, actor 1 resembles the trustor, and actor 2 resembles the trustee. The trustor first decides whether to place trust. If no trust is placed, the game ends and the trustor and trustee receive $P_i$ ($i = 1,2$), respectively. If trust is placed, the trustee can honor or abuse trust. Honored trust yields the payoff $R_i$, which is better for both actors than the situation in which no trust is placed ($R_i > P_i$). Abused trust however yields $T_2 > R_2$ for the trustee, which shows why the trustee has an incentive to behave untrustworthy. Given that abused trust is associated with payoffs ($S_{1} < P_{1} %>$) for the trustor, anticipating on the trustee's incentives to abuse trust, the trustor is better off by not placing trust in the first place. 
+
+```{r TG-graph, echo = FALSE, fig.cap = "\\label{TG}Extensive form of a one-shot Trust Game, with $T > R > P > S$. The doubled lines indicate the equilibrium path of play.", fig.align='center'}
+knitr::include_graphics("TG.png", dpi = 300)
+```
+
+The Investment Game, Prisoner's Dilemma and Helping Game can be analyzed similarly [e.g., @raub_etal_social_2015]. The Investment Game [@berg_etal_trust_1995] closely resembles the Trust Game, but differs in one respect: the actors' options are continuous rather than dichotomous. Specifically, the trustor obtains an initial endowment, and can decide how much of this endowment to send to the trustee. The amount sent is multiplied by some factor by the experimenter, after which the trustee can decide how much to send back. Hence, the amounts sent and returned reflect the trustor's trustfulness and the trustee's trustworthiness, respectively. Other dilemma situations may more closely resemble two-sided incentive problems. The Prisoner's Dilemma, for example, represents a two-sided incentive problem, in the sense that both actors have incentives to exploit their partner, and likewise have an incentive to protect themselves against exploitation by their partner. This contrasts with the Trust Game, because here only the trustee has an incentive to abuse trust, while the trustor can protect oneself against such behavior by not placing trust. The Helping Game closely resembles the Prisoner's Dilemma, but the actors move sequentially. Actor 1 decides to help actor 2 at a certain cost that is smaller than the benefit for actor 2, while at a later point actor 2 has the option to help actor 1, irrespective of whether actor 1 helped actor 2 in the first place.
+
+The simple theoretical analysis of the Trust Game shows that if both actors aim to maximize their individual returns from an interaction, and the trustor expects the trustee to do so, then the isolated nature of the interaction yields that trust is difficult to achieve [e.g., @binmore_playing_2007; @buskens_raub_handbook_2013]. The key here is that if actors cannot learn about their partner's past actions, and today's actions do not affect future outcomes, people have no incentive to place or honor trust. If the focal interaction is not followed by any future interactions that the actors are involved in, opportunistic behavior cannot be sanctioned, and there are no control opportunities. Hence, if trustees have short-term incentives for abusing trust, there is nothing that withholds them from abusing trust if they are in the situation to do so. Accordingly, if trustors know that trustees have short-term incentives to abuse trust, and that abusing trust has no consequences other than the outcome of the current interaction, they may protect themselves against an unwanted outcome by not placing trust in the first place, leading to a suboptimal outcome of the interaction. Hence, the trustfulness of the trustor is predominantly on expectations regarding the trustworthiness of the trustee [@buskens_raub_embedded_2002]. The same reasoning applies to the Investment Game, and similar arguments hold for the Prisoner's Dilemma and the Helping Game. Although the latter two games yield two actors with incentives to behave opportunistically, the key is that if there are no future interactions, exploiting a partner will have no future consequences, which renders cooperation unlikely.
+
+## Network control effects on trust
+
+Taking into account the social context, the incentives of the actors may change. When interactions are embedded, the trustee now has to balance the short-term incentives for abusing trust with the long-term costs. If the same two partners interact repeatedly, the gains from a flourishing partnership may be higher than the gains from exploiting your partner once and being punished for this act thereafter. The fact that some of the trustee's long-term incentives are under control of the trustor may induce a shift in behavior. A trustor can sanction untrustworthy behavior by not placing trust in any future interaction, and reward the trustee by placing trust otherwise, which is often referred to as conditional cooperation [@taylor_cooperation_1987] or direct reciprocity [@nowak_five_2006; @rand_nowak_cooperation_2013]. Game-theoretical analyses show that if the costs of future retaliation outweigh the short-term gains of abusing trust, it is in the trustee's self-interest to behave trustworthy [@kreps_1990]. Accordingly, the trustor might foresee that an abuse of trust would be against the interests of the trustee, which allows for placing trust [for a more formal discussion, see @buskens2018trust; @buskens_raub_handbook_2013]. Indeed, actors are less likely to exploit partners who they expect to interact with repeatedly, providing clear evidence for control effects in the dyadic case [@dal_bó_cooperation_2005; @dal_bó_fréchette_evolution_2011; @dal_bó_fréchette_determinants_2018; @embrey_etal_cooperation_2018].
+
+When trustees interact with a network of trustors who can share information among each other, rather than a single trustor, the same mechanism holds. If the focal trustor disseminates information about the trustee's behavior to future trustors, the long-term payoffs of the trustee are still partly under control of the current trustor. Hence, these future trustors may sanction or reward the trustee for behavior in the focal game. When future trustors sanction the trustee for abusing trust now, the trustee's long-term losses may still outweigh the short-term gains from the abuse of trust, which may mitigate the incentive for abusing trust. Such network embeddedness can replace [@kreps_1990; @kandori_social_1992] or complement [e.g., @buskens_trust_2003] dyadic embeddedness. For example, regardless of whether you visit the same restaurant multiple times, you might inform others about experiences with this restaurant. Based on your experiences, other potential visitors may decide whether or not to visit that restaurant. If enough guests decide to avoid that restaurant based on your experiences, selling leftovers will quickly backfire by reducing the future turnover. 
+
+To return to the Trust Game, if future trustors are reliably informed about the trustee's behavior in the current interaction, they can condition their actions on this behavior [which is often called indirect reciprocity\; @nowak_five_2006; @nowak_sigmund_evolution_2005]. Accordingly, similar sanctions and rewards can be applied as in dyadically embedded interactions, but potentially by different trustors. If these sanctions are sufficiently severe, it is in the trustee's self-interest to honor trust. The severity of the sanctions will depend on the likelihood that information about the trustee's past behavior is disseminated, but also on the number of informed future trustors that interact with the focal trustee. That is, the threat of future sanctions must be credible to have bite. If the trustor and the trustee are aware of such control opportunities, the trustee is expected to be more likely to honor trust, allowing the trustor to place trust more easily. 
+
+Nevertheless, there are reasons to doubt whether network control effects are indeed as strong as we would expect on the basis of game-theoretical arguments. One problem of such arguments is that information is assumed to be reliable, while incentive problems associated with the supply of information are neglected [e.g., @raub_weesie_reputation_1990]. Supplying information however constitutes a second-order social dilemma, because it takes time and effort to do so, while the individual returns from providing information may be small [@bolton_electronic_2004]. Additionally, information may be inconsistent with one's own experiences, and actors may doubt whether third parties are actually willing to implement sanctions. Lastly, actors may withhold trust until they have received information from others that a partner behaved trustworthy in the past, to further minimize the risk of getting exploited.
+
+Still, as a replacement of dyadic embeddedness, network embeddedness in general has been regularly observed to foster trust [e.g., @bohnet_learning_2005; @bohnet_huck_2004; @huck_competition_2012; @duffy2013social] and cooperation [e.g., @pfeiffer_etal_value_2012; @seinen_schram_social_2006]. However, focusing on network control effects specifically, only @bolton_electronic_2004 assessed and found network control effects in the absence of dyadic embeddedness, while @corten_etal_reputation_2016 did not find network control effects under these circumstances. Some support for network control effects alongside dyadic embeddedness was found by @buskens_raub_veer_triads_2010, @barrera_buskens_third_2009 and @frey_buskens_investments_2019, but not by [@miltenburg_buskens_triads_2012]. Hence, overall, we expect that trust, and cooperative behavior in general, increase with the network control opportunities. For the Trust Game and Investment Game, this leads to the following hypotheses:
+
+- Hypothesis 1: The trustor's trustfulness increases in the amount of network control opportunities.
+- Hypothesis 2: The trustee's trustworthiness increases in the amount of network control opportunities.
+
+\noindent
+Similar arguments on network control effects have been constructed for the Prisoner's Dilemma and the Helping Game [e.g., @raub_weesie_reputation_1990; @nowak_sigmund_evolution_2005]. However, because these games do not allow to separate trustfulness and trustworthiness, we will restrict our analyses of studies using these games to a single hypothesis:
+
+- Hypothesis 3: Cooperation increases in the amount of network control opportunities.
+
+## Differences between network control effects for trustors and trustees
+
+Given that both the trustor and the trustee receive the same information before they enter an interaction, all network control opportunities are known to both. Accordingly, game-theoretical assumptions would imply that the network control effects are the same for both types of actors. However, network control opportunities do not need to be evaluated in the same way by both types of actors. In fact, it may be easier to anticipate on network control opportunities for the trustee than for the trustor [@buskens_raub_veer_triads_2010]. For the trustee, it may be relatively straightforward to anticipate on the fact that abusing trust in a given round will result in repercussions during later rounds. The reasoning here only requires to think one step ahead: if future trustors sanction an abuse of trust, abusing trust will be costly, and if these costs outweigh the gains of abusing trust, it is not worthwhile to act opportunistically. 
+
+Before having a good reason to act upon network control opportunities, the trustor, however, has to reason one more step ahead. Specifically, the trustor has to speculate on how the trustee's behavior will change according to future sanctions by other trustors. That is, the trustor's trustfulness may increase only if this trustor foresees that the trustee anticipates on how abusing trust now will affect the trustfulness of future trustors, and thus on how future trustors will condition their behavior on the trustee's current actions. If you don't know whether the chef foresees that an unpleasant experience for you may result in others who in turn avoid the restaurant as well, the risk of eating there might be too large, leading you to cook your own meal. In short, people tend to have difficulties overseeing the complex dynamics of situations with multiple interdependent actors, especially if they have no experience with such situations [@binmore_playing_2007; @dal_bó_cooperation_2005; @dal_bó_fréchette_evolution_2011; @buskens_raub_veer_triads_2010; @milinski_cooperation_2001]. Therefore, we will assess the following conjecture, which can only be assessed for Trust Games and Investment Games:
+
+- Conjecture 1: There is more evidence for a network control effect on trustees' behavior than on trustors' behavior. 
+
+
+
+<!-- ## Differences between dyadic control and network control -->
+
+<!-- [[Ik heb het gevoel dat qua opbouw van complexiteit en specificiteit het beter zou zijn om dit te bespreken voordat de verschillen tussen trustor en trustee besproken worden. Echter, ik heb enkele bedenkingen bij het eerlijk kunnen vergelijken van van dyadische en netwerk controle effecten (hier kunnen we het woensdag over hebben), waardoor het misschien niet gepast is om gegeven de huidige set van studies deze effecten te vergelijken.]] -->
+
+<!-- Similarly, network control opportunities may be more difficult to evaluate compared to dyadic control opportunities, and there are multiple reasons why this may be the case. First of all, trustors have to rely on third parties to implement sanctions against a trustee who abused trust. However, third parties may abstain from sanctioning, for example because they observe that the trustee has already been sanctioned or because they think that the trustee receives a second chance. Likewise, a trustor who observed an abuse of trust may still believe that a trustee honors trust most of the time, and thus infer that the probability that trust will be abused is relatively small. Another reason is that information from third parties can be inconsistent with one's own experiences. If someone has never abused your trust, you may hardly worry about being exploited regardless of the fact that a trustee has exploited someone else. Although all these factors primarily concern the trustfulness of the trustor, the trustee may envision that such factors play a role. If a trustee expects that sanctions sanctions implemented by third parties will be less severe than sanctions implemented by the focal trustor in future interactions, the willingness to honor trust may subsequently decrease. Lastly, it may be that under dyadic embeddedness the trustor places trust, because without placing trust initially, it is not possible to build a mutually profitable relationship. However, under network embeddedness, trustors may try to learn from the experiences of others. Hence, despite control opportunities, the trustors may first rely on the experiences by others, before they are willing to take the risk to get exploited. Differences between dyadic embeddedness and network embeddedness have been found by others as well [e.g., @bohnet_huck_2004; @bolton_electronic_2004], but the focus has not been on control effects yet. Combining all these factors, it can be hypothesized that the dyadic control effect is stronger than the network control effect, for the trustfulness of the trustors ($H_4$), as well as the trustworthiness of the trustee ($H_5$). -->
+
+
+<!-- # Studies considered -->
+
+<!-- This will change still. Unfortunately, Huck, Bohnet and Xie have not responded to my email(s), so I will contact them again after the weekend. Additionally, I will still contact John Duffy (collaborator of Xie). -->
+<!-- ... -->
+
+<!-- ```{r studies-table, echo = FALSE, message = FALSE, warnings = FALSE} -->
+<!-- library(tidyverse) -->
+<!-- library(knitr) -->
+<!-- library(kableExtra) -->
+
+<!-- tibble(`Study`        = c("@buskens_weesie_experiment_2000", -->
+<!--                           "@bolton_electronic_2004", -->
+<!--                           "@seinen_schram_social_2006", -->
+<!--                           "@barrera_buskens_third_2009", -->
+<!--                           "@buskens_raub_veer_triads_2010", -->
+<!--                           "@miltenburg_buskens_triads_2012", -->
+<!--                           "@pfeiffer_etal_value_2012", -->
+<!--                           "@corten_etal_reputation_2016", -->
+<!--                           "@frey_buskens_investments_2019"), -->
+<!--        `Game`         = c("Vignette Experiment", -->
+<!--                           "Trust Game", -->
+<!--                           "Helping Game", -->
+<!--                           "Investment Game", -->
+<!--                           "Trust Game", -->
+<!--                           "Trust Game", -->
+<!--                           "Prisoner's Dilemma", -->
+<!--                           "Prisoner's Dilemma", -->
+<!--                           "Trust Game"), -->
+<!--        `Form of embeddedness` = c("Dyadic and network", -->
+<!--                                   "Network", -->
+<!--                                   "Network", -->
+<!--                                   "Dyadic and network", -->
+<!--                                   "Dyadic and network", -->
+<!--                                   "Dyadic and network", -->
+<!--                                   "Network",  -->
+<!--                                   "Network", -->
+<!--                                   "Dyadic and network"), -->
+<!--        `Tests on network control effects`  -->
+<!--           = c("Confirmed", -->
+<!--               "Confirmed", -->
+<!--               "No test (positive trend)", -->
+<!--               "Not confirmed", -->
+<!--               "Undecisive", -->
+<!--               "Not confirmed", -->
+<!--               "No test (positive trend)", -->
+<!--               "Not confirmed", -->
+<!--               "Confirmed") -->
+<!--        )[-1,] %>% -->
+<!--   kable(format = "pipe", -->
+<!--         caption = "Information on all studies incorporated in this project.") -->
+<!-- ``` -->
+
+<!-- ```{r TG-graph, echo = FALSE, fig.cap = "Extensive form of a one-shot Trust Game, with $T > R > P > S$. The doubled lines indicate the equilibrium path of play."} -->
+<!-- knitr::include_graphics("TG.jpg") -->
+<!-- ``` -->
+
+
+
+<!-- If this probability is sufficiently large with respect to the short-term incentives to abuse trust,  -->
+
+<!-- that unknown characteristics of the trustee can be  -->
+
+<!-- Hence, if the returns from placing and honoring trust in future interactions are sufficiently large, incentives to abuse trust  of trust of future interactions are sufficiently large -->
+
+<!-- a trust-abusing trustee can be punished by the trustor through withholding trust in feature rounds. Hence, as long as -->
+
+<!-- Trust game, prisoner's dilemma, helping game. -->
+
+<!-- # Data -->
+
+<!-- These hypotheses will be assessed by reanalyzing the data of multiple experimental studies that assessed the effect of network embeddedness (see Table 1), and aggregating the evidence in favor of the hypotheses of interest using Bayesian Evidence Synthesis. Reanalyzing these data is required, because only a small subset of the data explicitly assessed network control effects. It must be noted in advance that not all data sets allow to assess the last two research questions, sometimes because not all studies distinguish between trustors and trustees (e.g., subjects play of Prisoner’s Dilemma or a Helping Game), and sometimes because the studies do not assess both dyadic and network embeddedness in a comparable way. -->
+
+<!-- In all experiments considered, the participants were randomly allocated to one of multiple conditions. The conditions will be outlined below. Due to the fact that multiple data sets are used, I have provided a thorough description of two data sets that differ to quite some extent, while the other studies are fairly similar to one of these two, but might differ in some specifics. Hence, these two descriptions should give a general overview of what the data sets entail, and which analyses can be conducted.  -->
+
+<!-- Table 1 gives a broad overview of the studies that are considered to be included in the thesis. However, I actually have access to the data of only 7 of these studies. Whether it is possible to answer the third research question will be dependent on whether access to the currently not available data sets will be provided. The first two research questions can be answered already given the currently available data sets.  -->
+
+<!-- As is obvious from Table 1, the experiments conducted can be broadly classified into two groups. In the first group, network embeddedness is operationalized as a random matching procedure with information exchange through the network (Study 1-7). In the second group (Study 8-11), network embeddedness is implemented as a condition in which the interacting trustor and trustee are complemented by a second trustor that also interacts with the trustee. Both trustors obtain full information about the actions of the trustee against both trustors. Because of the similarity within the two groups, a single study of both of these groups will be discussed in more depth. -->
+
+<!-- Table 1 -->
+
+<!-- Information on data sets that are considered to be included in the thesis. -->
+
+<!-- ![](study_table.png) -->
+
+<!-- The study, and data, by Bolton, Katok & Ockenfels (2004) is exemplary for the studies in group 1. The authors compare three treatment conditions: (1) no embeddedness, (2) network embeddedness and (3) dyadic embeddedness. In condition 1, trustors are randomly matched with trustees without information about the trustee’s past information being provided. In condition 2, trustors are also randomly matched with trustees, but now obtain information about the number of times the trustee honored trust in past interactions. In condition 3, a trustor and a trustee are paired randomly in round 1, but repeat the Trust Game as a pair throughout. Each of the conditions was played in three sessions, with 16 participants per session, resulting in 48 participants in every treatment and a total sample size of N=144. In all three conditions, subjects played the Trust Game 30 times. -->
+
+<!-- Technically speaking, there were only six variables included in the data set. The ID of the trustor, the ID of the trustee, whether or not the trustor placed trust, whether or not the trustee honored trust, the round of the game and the treatment condition. The treatment condition was operationalized as a categorical variable (no embeddedness = 0; network embeddedness = 1; dyadic embeddedness = 2), similarly to the action of the trustor (not placing trust = 0, placing trust = 1) and the action of the trustee (abuse trust = -1, no choice because the trustor did not place trust = 0/NA, honoring trust = 1). Furthermore, the round variable ranges from 1 to 30.  -->
+
+<!-- Using these variables, control and learning (which will be treated as a control variable in the statistical sense) can be constructed. In general, there are three ways to operationalize the control effect. First, focus can be restricted to the first round of the game, which has several advantages. In the first round, no learning can have occurred, so differences between the treatment group in terms of trust in the first round of the game purely represent the anticipation of the actors regarding future sanction opportunities. In the network treatment, such control effects concern the sanction opportunities by other trustors that the trustee will meet in future rounds, while in the network treatment, control effects concern the sanction opportunities by the same trustor in future rounds. Second, focus can be restricted to the rounds in which the trustee has not (yet) abused trust. In this way, the amount of information a trustor has about a trustee is essentially kept constant, and thus excludes learning effects in the sense of Buskens & Raub (2002). However, it seems probable that trustors also condition their behavior on past actions against themselves, even by different trustees. Controlling for these experiences by focusing exclusively on the rounds in which a trustor has not observed any abuse of trust at all may be infeasible, because due to the random allocation, a trustor interacts with many trustees, and it is likely that the trustor will soon interact with at least one trustee who abused trust. Third, focus can be directed to controlling for learning in a statistical sense. After taking past actions by other trustees and the focal trustee into account, the effect of the number of rounds left can be estimated. When there are more rounds left to play, there are more control opportunities, while the amount of sanction opportunities decreases when there are fewer rounds to play. However, there should be controlled for learning, because as there are fewer rounds the play, the likelihood that a trustor has observed an abuse of trust and therefore withholds trust also increases. Although this would reflect an effect of embeddedness, it would not reflect an effect of control, which is what the focus is on. Similarly, when estimating the trustee’s behavior, it can be taken into account how often past trustors actually placed trust. If past trustors hardly placed trust, a trustee may expect that future trustors will also not place trust, reducing the relative severity of future sanctions. All these three measures make use of the round variable and the variables indicating the trustors’ and trustees’ past actions. Accordingly, these three measures can be compared over the treatment conditions. -->
+
+
+
+
+# Literature
+
+\setlength{\parindent}{-0.2in}
+\setlength{\leftskip}{0.2in}
+\noindent
+
+<div id="refs"></div>

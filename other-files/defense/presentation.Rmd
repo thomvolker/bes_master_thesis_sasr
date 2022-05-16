@@ -1,0 +1,311 @@
+---
+title: "The future is made today"
+subtitle: "Concerns for reputation foster trust and cooperation"
+author: "Thom Volker"
+institute: "Utrecht University"
+date: "`r format(Sys.Date(), '%d %B, %Y')`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+<style type="text/css">
+.remark-slide-content {
+    font-size: 24px;
+    padding: 1em 4em 1em 4em;
+}
+</style>
+
+# Trust and cooperation
+
+.pull-left[
+
+Trust and cooperation are central to human life. 
+
+- Economic transactions often presuppose trust.
+
+<br>
+
+- Social interactions often require trust.
+
+]
+
+.pull-right[
+![Giphy](https://media3.giphy.com/media/e05GB2c86qgOk/giphy.gif?cid=790b761194165246d068c0faa6fedb93a6e362707aba9447&rid=giphy.gif&ct=g)
+]
+
+
+
+???
+
+Trust and cooperation are central to everyday life. 
+Economic transactions often presuppose trust, for example in the quality of the products people buy. 
+Social interactions also often requires trust, for example because those who help me today may expect that I will help them in the future. 
+Even in the context of football teams, as Koen is probably well aware of, cooperation is very much required to achieve a good performance. 
+Yet, achieving trust and cooperation can be problematic, because although it is generally collectively beneficial, it can be costly for the individual.
+As trust and cooperation are so important in everyday life, we studied how trust and cooperation can be fostered. 
+
+---
+
+# Network control effects
+
+Interactions seldom occur in a social vacuum. 
+
+Network control: others can sanction me in the future for my behavior today. 
+
+<br>
+
+- Trustworthy behavior can be rewarded by trusting me again.
+
+<br>
+
+- Untrustworthy behavior can be retaliated, by withholding trust.
+
+???
+
+We focused on the effect of network control on trust. 
+It must be noted that interactions between persons seldom occur in a social vacuum, in the sense that people are embedded in a social context, in which they interact with a group of people that also interact.
+Accordingly, acting trustworthy or cooperatively in the current transaction might yield future benefits. 
+In that sense, the future is made today, because if I do not care for my long-term reputation and act untrustworthy, other may punish me for being untrustworthy.
+Yet, if I know that acting untrustworthy today results in future retaliation, I might consider to build a reputation of being trustworthy, such that others will interact with me in the future. 
+Under network control, such future sanctions are implemented by third parties, rather than by the person I had a transaction with today, as opposed to dyadic control, in which the same person I interacted with today can sanction me in the future.
+Yet, the key to both forms of embeddedness is that the long-term gains of behaving trustworthy may outweigh the short-term gains of behaving untrustworthy, such that it can be in my self-interest to behave trustworthy.
+
+---
+
+# Hypotheses
+
+- Hypothesis $H_1$: The trustor's trustfulness increases in the amount of network control opportunities.
+
+
+- Hypothesis $H_2$: The trustee's trustworthiness increases in the amount of network control opportunities.
+
+
+- Hypothesis $H_3$: Cooperation increases in the amount of network control opportunities.
+
+<br>
+
+- Conjecture 1: We expect more evidence for a network control effect on trustees' behavior than on trustors' behavior.
+
+???
+
+Based on game-theoretical arguments, we derived three hypotheses, that are all evaluated using the data from multiple studies:
+
+First, we expect that trustfulness increases when there are more network control opportunities. 
+This is mainly due to the fact that if the network control opportunities reduce untrustworthy behavior, it is easier and more appealing to place trust, because the likelihood that it gets abused decreases. 
+Second, we thus expect that trustworthiness increases when the network control opportunities increase.
+Third, as not all studies allow to distinguish between trustfulness and trustworthiness, we expect that cooperation in general increases in the amount of network control opportunities.
+
+Yet, overseeing the effects of network control might be easier for the trustee than for the trustor. Without going in the specifics now, this lead to a conjecture, such that we expected to find more evidence for a network control effect for trustees than for trustors.
+
+---
+
+# Data & methods
+
+Data from 8 experimental studies on network embeddedness.
+
+- Characteristics differ between studies (e.g., operationalization of network embeddedness)
+
+**Outcome:** *First round trustfulness/trustworthiness/cooperation*
+
+**IV:** *Treatment condition (network embeddedness versus no network embeddedness)*
+
+**Model:** *Depends on study (multilevel structure, measurement of outcome)*
+
+After analyzing all individual studies → Bayesian updating method to aggregate the results.
+
+
+???
+
+We test our hypotheses using the data from eight studies on network embeddedness.
+These studies differed substantially, for example with respect to the type of game that is played and the length of the game, but also with respect to the operationalizations of network embeddedness and the outcome variables.
+Yet, in each study, there is an outcome that measures trustfulness, trustworthiness or cooperation in some form, and in each study a condition with network embeddedness is compared with a condition without network embeddedness.
+So, in each study, we fitted a regression model in which the outcome was regressed on the treatment condition. 
+If required, we used cluster-robust standard errors to take the nested structure of the data into account. 
+After obtaining the results in the individual studies, we calculated a Bayes factor for the evidence in favour of our hypothesis against the evidence for a complement hypothesis.
+The complement hypothesis implies a negative network control effect. 
+Using this set-up, we can quantify how much more likely a positive network control effect is, than a negative network control effect.
+After following this procedure for all studies, we applied a Bayesian updating method on the level of the Bayes factors. 
+
+---
+
+# Results
+
+Aggregation of all studies (regardless of trustfulness, trustworthiness or cooperation).
+
+<br>
+
+```{css, echo=F}
+    /* Table width = 100% max-width */
+
+    .remark-slide table{
+        width: 100%;
+    }
+
+    /* Change the background color to white for shaded rows (even rows) */
+
+    .remark-slide thead, .remark-slide tr:nth-child(2n) {
+        background-color: white;
+    }
+```
+
+```{r, echo = F, message=F,warning=F}
+library(magrittr)
+library(tibble)
+tibble(`Outcome` = c("All studies combined"),
+           `Bayes factor` = 523376168103) %>%
+  knitr::kable()
+```
+
+
+???
+
+First note that all studies, and all outcomes, can provide some evidence for or against the network control hypothesis. 
+Regardless of whether we measure trustfulness, trustworthiness or cooperation, we expect that the network control hypothesis holds for each. 
+When we aggregate the results over all studies combined, we find that there is overwhelming support for the network control hypothesis. 
+That is, the network control hypothesis obtains 500 billion times more support than its complement, which is, I would say, quite convincing. 
+However, we were not only interested in the support for the network control hypothesis over all studies combined, but we were particularly interested in specific subsets.
+That is, we wanted to obtain the support for trustfulness, trustworthiness and cooperation separately.
+
+---
+
+# Results
+
+Aggregation of trustfulness, trustworthiness and cooperation separately.
+
+<br>
+
+```{r, echo = F, message=F,warning=F}
+library(magrittr)
+library(tibble)
+tibble(`Outcome` = c("All studies combined", 
+                     " ", 
+                     "Trustfulness"),
+       `Bayes factor` = c("523376168103", 
+                          " ", 
+                          "224")) %>%
+  knitr::kable(align = c("l", "r"))
+```
+
+
+???
+
+When looking at trustfulness, the aggregated support is considerably smaller than for all studies and outcomes combined.
+Yet, the network control hypothesis is still 224 times more likely than its complement, which is actually also very strong support for the network control hypothesis for trustfulness.
+
+---
+
+# Results
+
+Aggregation of trustfulness, trustworthiness and cooperation separately.
+
+<br>
+
+```{r, echo = F, message=F,warning=F}
+library(magrittr)
+library(tibble)
+tibble(`Outcome` = c("All studies combined", 
+                     " ", 
+                     "Trustfulness",
+                     " ",
+                     "Trustworthiness"),
+       `Bayes factor` = c("523376168103", 
+                          " ", 
+                          "224",
+                          " ",
+                          "2238802271")) %>%
+  knitr::kable(align = c("l", "r"),
+               escape=F)
+```
+
+
+???
+
+The results for trustworthiness are again very convincing. 
+The network control hypothesis is more than 2 billion times more plausible than its complement, which was a negative network control effect.
+Accordingly, there is almost no support for a negative network control effect, and about full support for a positive network control effect.
+Additionally, when comparing the Bayes factors, it can be seen that although the network control hypothesis is convincingly supported for both trustfulness and trustworthiness, the aggregated amount of support is much larger for trustworthiness. 
+So, although both are convincingly supported, the support for the network control hypothesis for trustworthiness is much larger in magnitude than the support for the network control hypothesis for trustfulness.
+
+
+---
+
+# Results
+
+Aggregation of trustfulness, trustworthiness and cooperation separately.
+
+<br>
+
+```{r, echo = F, message=F,warning=F}
+library(magrittr)
+library(tibble)
+tibble(`Outcome` = c("All studies combined", 
+                     " ", 
+                     "Trustfulness",
+                     " ",
+                     "Trustworthiness",
+                     " ",
+                     "Cooperation"),
+       `Bayes factor` = c("523376168103", 
+                          " ", 
+                          "224",
+                          " ",
+                          "2238802271",
+                          " ",
+                          "1")) %>%
+  knitr::kable(align = c("l", "r"))
+```
+
+
+???
+
+Yet, for cooperation our hypothesis is not support, as both the network control hypothesis and its complement are about equally likely.
+Yet, it must be noted that we only included two studies that assessed cooperation, rather than trustfulness and trustworthiness, of which one found rather strong support in favor of the network control hypothesis, while the other found rather strong support against the network control hypothesis.
+
+---
+
+# Discussion
+
+**Support**: *quite convincing*.
+
+- Support for network control hypothesis for trustfulness and trustworthiness.
+
+- No support for the network control hypothesis for cooperation.
+
+Dyadic control opportunities attenuate the effect of network control opportunities for trustfulness, but not for trustworthiness.
+
+Robustness check with multilevel models.
+
+But, we only relied on experimental studies, and other operationalizations of network control are possible.
+
+???
+
+We found quite convincing support for the network control hypothesis. 
+The support was very strong over all measures combined, but also for trustfulness and trustworthiness separately.
+In line with what we conjectured, there was more evidence for the network control hypothesis for trustworthiness than for trustfulness.
+We could not find support for the network control hypothesis for cooperation, but it is quite likely that this depends on the inclusion of only two studies. 
+Without going into too much details, cooperation can be thought to consist of trustfulness and trustworthiness together, because you have to trust that your partner will behave trustworthy, while simultaneously having to decide whether you want to behave trustworthy if your partner is trustful.
+Accordingly, it seems likely that with the inclusion of more studies, there would also be support for the network control hypothesis for cooperation.
+
+Additionally, we performed some analyses in which a further distinction between subgroups of the studies was made, in which we found that dyadic control opportunities attenuate the effect of network control opportunities. 
+First of all, dyadic control effects on themselves already substantially increase trustfulness, trustworthiness and cooperation, such that there is relatively little room for further improvement through network embeddedness. 
+Yet, this does not explain the differences between trustors and trustees, because trustors seem to rely predominantly on dyadic embeddedness if this is possible, and then not so much on network control opportunities.
+However, if dyadic control is not possible, because you do not or seldom interact with the same partner repeatedly, trustors seem to realize that network control opportunities provide a feasible alternative.
+It is very well possible that this relates to the cognitive burden placed on overseeing the consequences of network control opportunities, which may be more difficult for trustors than for trustees.
+
+Yet, note that we only included experimental studies, which has both strengths and weaknesses. 
+First, it allowed us to make causal inferences, but more importantly, it allowed to clearly separate control effects from learning effects, which tends to be difficult in observational data sets.
+It does, however, pose problems with regard to the sample, which tends to be very selective.
+Most participants are undergraduate university students, by definition highly educated individuals. 
+Likewise, it is not easy to generalize from the experimental setting to real-life scenarios. 
+Additionally, there are other operationalizations imaginable that also capture network control effects. 
+Yet, these other operationalizations were often not consistently possible throughout all studies under consideration.

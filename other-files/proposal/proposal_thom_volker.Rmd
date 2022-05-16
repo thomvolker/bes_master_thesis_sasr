@@ -1,0 +1,178 @@
+---
+title: |
+  | 
+  |
+  | **Master thesis proposal**
+  |
+  |
+  |
+  | Can reputation drive cooperation?
+  |
+  |
+  |
+  |
+author: |
+  | Thom Volker (5868777)^[I gratefuly acknowledge Davide Barrera, Gary Bolton, Vincent Buskens, Karen Cook, Rense Corten, Vincenz Frey, Elena Katok, Nynke van Miltenburg, Axel Ockenfels, Werner Raub, Stephanie Rosenkranz, Arthur Schram, Ingrid Seinen, Joris van der Veer and Jeroen Weesie for sharing their research data.]
+  |
+  |
+  |
+  | Supervisors: Prof. dr. ir. Vincent Buskens & Prof. dr. Werner Raub
+  |
+  |
+  | *Sociology and Social Research Master's programme*
+  |
+  | *Utrecht University*
+  |
+  |
+  |
+  | `r format(Sys.time(), '%B %d, %Y')`
+  |
+  |
+  | `r paste0("Word count: ", wordcountaddin::word_count() - 41)`
+  | 
+  |
+  |
+  | Potential journal for publication: Social Networks, American Economic Review, 
+  | European Economic Review, Sociological Review
+  |
+output:
+  bookdown::pdf_document2:
+    number_sections: true
+    extra_dependencies: ["flafter"]
+    # df_print: kable
+    highlight: pygments
+    toc: false
+mainfont: Calibri
+sansfont: Calibri
+linestretch: 1.5
+fontsize: 11pt
+params:
+  !r Sys.setlocale("LC_TIME", "C")
+indent: true
+tables: true
+header-includes:
+  - \usepackage{caption,multirow,array,float}
+  - \usepackage{wrapfig}
+  - \usepackage{booktabs}
+  - \DeclareCaptionLabelSeparator*{spaced}{\\[2ex]}
+  - \captionsetup[table]{textfont=it,format=plain,justification=justified,
+                         singlelinecheck=false,labelsep=spaced,skip=0pt}
+bibliography: "../../thesis.bib"
+csl: "/Users/thomvolker/Documents/styles/apa-6th-edition.csl"
+# csl: "/Users/thomvolker/Documents/styles/nature.csl"  #
+link-citations: yes
+linkcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+The tension between private and collective interest is paramount to many everyday interactions. 
+This situation is illustratively captured in a Prisoner's Dilemma, in which two actors simultaneously decide to cooperate or defect [e.g., @binmore_playing_2007; @luce_raiffa_games_1989]. 
+Regardless of the choice of one's partner, an individual actor cannot do better than by defecting. 
+This mutual uncooperative outcome however yields lower returns than mutual cooperation, characterizing the game as a "social dilemma" [@kollock_emergence_1994; @ostrom_behavioral_1998; @nowak_evolving_2012; @raub_social_2015].
+The associated tension (which is also present in other dilemma situations illustrated by, e.g., Trust Games, Investment Games, Helping Games, Public Goods Games etc.), can be alleviated by accounting for *embeddedness*.
+
+Embeddedness refers to the recurring nature of many dilemma's, in the sense that two actors may interact multiple times (dyadic embeddedness) or are related to common third parties [network embeddedness, @buskens_raub_embedded_2002; @buskens_raub_handbook_2013].
+If future interactions are sufficiently important, embeddedness fosters cooperation by allowing for *control* [i.e., future sanction possibilities, @buskens_raub_embedded_2002; @buskens_raub_handbook_2013; @nowak_five_2006; @nowak_evolving_2012; @yamagishi_yamagishi_trust_1994]. 
+Specifically, if I experience that you take advantage of my cooperation today, I may defect in our future interactions (*dyadic control*).
+Additionally, if information about your uncooperative behavior against me reaches your future interaction partners, these partners may refrain from cooperation as well (*network control*). 
+Hence, the potential harm of a poor reputation may diminish the incentives for uncooperative behavior [e.g., @axelrod_cooperation_1984; @axelrod_evolution_1981; @trivers_evolution_1971; @nowak_sigmund_evolution_2005; @raub_weesie_reputation_1990; @kandori_social_1992].
+
+# Past research
+
+Multiple studies found that dyadic embeddedness and corresponding control opportunities foster cooperation [e.g., @dal_bó_cooperation_2005; @dal_bó_fréchette_evolution_2011; @dal_bó_fréchette_determinants_2018; @embrey_etal_cooperation_2018; @mao_resilient_cooperators_2017]. 
+Research on effects of network embeddedness and resulting control opportunities on cooperation is less decisive (Table \@ref(tab:studies-table)).
+All but one [@corten_etal_reputation_2016] experiments that compared network embeddedness with a condition without embeddedness found that network embeddedness promotes cooperation [@bolton_electronic_2004; @seinen_schram_social_2006; @pfeiffer_etal_value_2012]. 
+However, when interactions were embedded dyadically and in a network, network control opportunities resulted in more cooperation for those who could exploit their partner's cooperation in some studies [@buskens_raub_veer_triads_2010; @frey_buskens_investments_2019], but not in an other study [@miltenburg_buskens_triads_2012]. 
+For those whose cooperative behavior could be exploited, network embeddedness generally had no effect on cooperation [@buskens_raub_veer_triads_2010; @frey_buskens_investments_2019; @miltenburg_buskens_triads_2012; @barrera_buskens_third_2009]. 
+
+
+```{r studies-table, echo = FALSE, message = FALSE, warnings = FALSE}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+
+tibble(`Study`        = c("@buskens_weesie_experiment_2000",
+                          "@bolton_electronic_2004",
+                          "@seinen_schram_social_2006",
+                          "@barrera_buskens_third_2009",
+                          "@buskens_raub_veer_triads_2010",
+                          "@miltenburg_buskens_triads_2012",
+                          "@pfeiffer_etal_value_2012",
+                          "@corten_etal_reputation_2016",
+                          "@frey_buskens_investments_2019"),
+       `Game`         = c("Vignette Experiment",
+                          "Trust Game",
+                          "Helping Game",
+                          "Investment Game",
+                          "Trust Game",
+                          "Trust Game",
+                          "Prisoner's Dilemma",
+                          "Prisoner's Dilemma",
+                          "Trust Game"),
+       `Form of embeddedness` = c("Dyadic and network",
+                                  "Network",
+                                  "Network",
+                                  "Dyadic and network",
+                                  "Dyadic and network",
+                                  "Dyadic and network",
+                                  "Network", 
+                                  "Network",
+                                  "Dyadic and network"),
+       `Tests on network control effects` 
+          = c("Confirmed",
+              "Confirmed",
+              "No test (positive trend)",
+              "Not confirmed",
+              "Undecisive",
+              "Not confirmed",
+              "No test (positive trend)",
+              "Not confirmed",
+              "Confirmed")
+       )[-1,] %>%
+  kable(format = "pipe",
+        caption = "Information on all studies incorporated in this project.")
+```
+
+# The current project
+
+The inconsistencies in the current findings question to what extent network control effects indeed reflect an empirical regularity. 
+Additionally, only part of the mentioned studies tested network control effects explicitly, while the others failed to separate network control effects from potential confounders (e.g., learning effects). 
+The current project aspires a synthesis of past studies concerning network control effects (Table \@ref(tab:studies-table); data sets are available) using a consistent analysis plan.
+Specifically, if network control effects subsist, one would expect a positive effect of network embeddedness on first-round cooperation, where no confounding by learning effects could have occurred. 
+Additionally, it can be expected that the first uncooperative move by one of a pair of actors occurs later under network embeddedness and that end-game effects (i.e., declining cooperation rates in the last few rounds due to a decrease in control opportunities) will occur later in networked conditions. 
+Building upon this, network control effects can be compared with dyadic control effects in terms of magnitude. 
+
+The contribution of this thesis is not mere theoretical, but also methodological. 
+Although similar hypotheses can be derived for all studies involved, the diverse nature of these experiments using varying experimental games, operationalizations of network embeddedness, game lengths and network sizes renders a meta-analytical framework infeasible. 
+Therefore, past findings will be synthesized using a novel method, called Bayesian Evidence Synthesis [BES, @kuiper_combining_2013]. 
+This method, which is built upon the foundation of the Bayes Factor [BF, @kass_raftery_bayes_factors_1995], allows researchers to pool evidence for a general hypothesis using varying study-specific hypotheses, regardless of seemingly incompatible designs. 
+Although relatively unknown, this method has an enormous practical applicability, because a robust line of evidence is necessarily built by combining various ways of testing the same hypothesis, using different sources of data and different methodologies [e.g., @buskens_raub_handbook_2013; @munafo_robust_2018; @lawlor_triangulation_2017; @jackson_cox_experimental_2013]. 
+Ultimately, this project aims to build such a robust line of evidence regarding the existence of a network control effect using a broad and diverse range of empirical studies, while simultaneously illustrating how BES can be applied in a practical and realistic research setting. 
+
+
+<!-- Actors realize that having a good reputation may facilitate future lucrative interactions (Kollock, 1994). Such a reputation can be built by behaving cooperatively.  -->
+
+<!-- The involvement of third-parties characterizes many real-life interactions (Granovetter, 1985). -->
+
+<!-- In a repeated trust game, the trustor can reward trustworthiness by placing trust again, and punish trust abuse by withholding trust. Such conditional behavior provides incentives for trustworthiness. -->
+
+<!-- In the repeated triad trust game, network embeddedness enables the trustors to learn about the trustee from each other's experiences, and so the trustee has to take into account that his choice in one trust game will affect the future choices of both trustors. -->
+
+<!-- - Hypothesis 1: First round cooperation rates are higher under network embeddedness than under no embeddedness, and higher under network embeddedness AND dyadic embeddedness than under dyadic embeddedness alone. -->
+
+<!-- - Hypothesis 2a: There is a positive effect of the number of future rounds to be played on cooperation, after controlling for learning opportunities (total number of cooperative actions, cooperation in last round). -->
+
+<!-- - Hypothesis 2b: The positive effect of hypothesis 2b is stronger under network embeddedness (in the presence of dyadic embeddedness) than under no embeddedness (or dyadic embeddedness alone). -->
+
+# Literature
+
+\setlength{\parindent}{-0.2in}
+\setlength{\leftskip}{0.2in}
+\noindent
+
+<div id="refs"></div>

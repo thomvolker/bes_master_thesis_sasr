@@ -1,0 +1,53 @@
+---
+title: "bes_master_thesis_sasr"
+author: Thom Volker
+date: May 13, 2022
+output:
+  md_document:
+    variant: markdown_github
+---
+
+# Volker, Buskens & Raub "The future is made today: Concerns for reputation foster trust and cooperation"
+
+This repository contains all data and code to reproduce the analyses. 
+Per data set, one script is used for reproducing the original findings and analyzing the data for the current paper.
+This folder contains four subdirectories, of which more information is included below. 
+The data sets are included in the folder `data`, the analysis scripts and results objects are in the folder `R`. 
+All objects are named such that they correspond to the study of which the results emerged. 
+
+| Folder | Content |
+|:---- |:------------------------- |
+| thesis | Contains all files belonging to the manuscript <br> - References in `thesis.bib` <br> - Text and code to create tables in `manuscript_volker.Rmd` <br> - Output document `manuscript_volker.pdf` <br> - Required `Latex` packages in `preamble.tex` <br> - Required frontpage in `frontmatter.tex` |
+| R | All scripts to obtain the individual study results. <br> `[study].R` - These scripts reproduce the original findings (sometimes, `Stata` is required. If this is the case, the lines that should be run in `Stata` are commented out in the `R` code. <br> `create-tables.R` - Aggregates the results of the individual studies and reproduces the Tables in the manuscript. <br> - The folder `results` contains the workspaces resulting from the individual analysis scripts. |
+| data | Contains the data files that I obtained from the authors to reproduce these analyses. | 
+| other-files | Rather self explanatory, this folder contains random files and thoughts that developed somewhere during the project (this ranges from presentations about the topic, the initial project proposal, an intermediate report and some meeting notes). |
+
+
+All data used in this paper stems from a secondary source.
+Some authors published the original data on an online repository, while other authors transferred the data through email. 
+Because these secondary sources are used, data is not shared with open access, but I will contact the authors to ask whether the data can be made freely accessible. 
+Ethical approval has been granted by the FETC at Utrecht University (application number 21-1922).
+
+
+# Machine and package info
+
+```{r, include=F}
+library(magrittr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(sandwich)
+library(lme4)
+library(bain)
+library(plm)
+library(trend)
+library(lmtest)
+library(purrr)
+```
+
+
+```{r, echo=F, comment=NA}
+sessioninfo::session_info()
+```
+
+

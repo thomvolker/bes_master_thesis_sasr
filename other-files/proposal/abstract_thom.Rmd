@@ -1,0 +1,17 @@
+---
+title: | 
+       | **Conference abstract**
+       |
+       | Do reputation concerns in social networks affect cooperation? Combining results from 8 studies.
+author: "Thom Volker"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Provisional abstract
+
+Why sustainable cooperative relationships between human beings can persist, is one of longest standing questions in the social sciences. One of the explanations is that many interactions occur between individuals embedded in a common network. Such a structure allows individuals to condition their behaviour on their transaction partners' past actions against third parties. If actors are concerned about the returns of future interactions, network embeddedness bears incentives to behave cooperatively in current transactions, because building a good reputation is beneficial in the future. Multiple experimental studies investigated whether reputation concerns indeed foster cooperation in a network, although with mixed results. I aim to statistically summarize the total amount of evidence for the presence of such an effect using a novel method called Bayesian Evidence Synthesis. Unlike meta-analytical methods, Bayesian Evidence Synthesis allows to aggregate the results from multiple studies with diverse experimental designs, which is required due to the varying implementations of "network embeddedness" in the studies under consideration. Ultimately, I aspire to build a robust line of evidence concerning the presence of an effect of reputation concerns under network embeddedness on cooperation, while providing a showcase on how to use this method.
+

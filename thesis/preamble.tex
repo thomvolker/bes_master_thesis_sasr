@@ -1,0 +1,22 @@
+\usepackage{caption,multirow,array,float}
+\usepackage{wrapfig}
+\usepackage{booktabs}
+\usepackage{blkarray}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{mathtools}
+\DeclareCaptionLabelSeparator*{spaced}{\\[2ex]}
+\captionsetup[table]{textfont=it,format=plain,justification=justified,
+singlelinecheck=false,labelsep=colon,skip=0pt,labelformat=simple}
+\usepackage[left]{lineno}
+\usepackage{lscape}
+% \usepackage[backend=biber]{biblatex}
+\usepackage{afterpage}
+\usepackage{capt-of}
+\newcommand{\blandscape}{\begin{landscape}}
+\newcommand{\elandscape}{\end{landscape}}
+\newcommand{\bafterpage}{\begin{afterpage}}
+\newcommand{\eafterpage}{\end{afterpage}}
+\let\oldmaketitle\maketitle
+\AtBeginDocument{\let\maketitle\relax}
