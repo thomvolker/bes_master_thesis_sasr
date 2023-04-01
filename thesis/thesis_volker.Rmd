@@ -1,6 +1,6 @@
 ---
 title: "The future is made today: Concerns for reputation foster trust and cooperation"
-author: Thom Benjamin Volker^[I gratefuly acknowledge Davide Barrera, Gary Bolton, Vincent Buskens, Karen Cook, Rense Corten, John Duffy, Vincenz Frey, Elena Katok, Yong-Ju Lee, Nynke van Miltenburg, Axel Ockenfels, Werner Raub, Stephanie Rosenkranz, Arthur Schram, Ingrid Seinen, Joris van der Veer, Jeroen Weesie and Huan Xie for sharing their research data. Also, I wish to thank Vincent Buskens and Werner Raub for their valuable comments and supervision, and Irene Klugkist for stimulating discussions.]
+author: Thom Benjamin Volker, Vincent Buskens, Werner Raub (andere volgorde kan ook, laat maar weten)^[We gratefuly acknowledge Davide Barrera, Gary Bolton, Karen Cook, Rense Corten, John Duffy, Vincenz Frey, Elena Katok, Yong-Ju Lee, Nynke van Miltenburg, Jack Ochs, Axel Ockenfels, Stephanie Rosenkranz, Arthur Schram, Ingrid Seinen, Joris van der Veer, Jeroen Weesie and Huan Xie for sharing their research data.]
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   # bookdown::word_document2:
@@ -14,15 +14,14 @@ output:
     number_sections: true
     includes:
       in_header: preamble.tex
-      before_body: "frontmatter.tex"
     keep_tex: true
 linestretch: 2
 fontsize: 11pt
 params:
   !r Sys.setlocale("LC_TIME", "C")
 indent: true
-bibliography: "../../thesis.bib"
-csl: "../../american-sociological-association.csl"
+bibliography: "thesis.bib"
+csl: "american-sociological-association.csl"
 link-citations: yes
 linkcolor: blue
 ---
@@ -59,6 +58,39 @@ For trustfulness, the evidence is especially convincing when actors can only rel
      \hfil\thepage\hfil}\vss}}
 
 \newpage
+
+
+OUTLET: SMR (eerste keus)
+
+TO DO
+
+Inkorten tekst
+-	Theorie kan korter/strakker (V&W)
+-	Methoden korter; prior en posterior secties sterk inkorten dan wel verwijderen, focus sneller op methodologische vernieuwing (T)
+-	Resultaten m.b.t. individuele studies kan korter/strakker en meer op hoofdlijnen (T; maar komt later, eerst eens kijken welke studies er nog zijn en of we nog meer moeten inpassen)
+-	Eventueel: kijken of de data-sectie nog korter kan (T; eerst opzet, niet volledig uitwerken).
+Als het goed is, leidt het inkorten van de tekst ertoe dat we (1) minder woorden nodig hebben dan we nu doen; wat meer woorden aan de discussie kunnen wijden. 
+
+Algemene punten
+
+Contributie blijft methodologisch én inhoudelijk, maar moet beter uit de verf komen, en zal dus strakker geformuleerd moeten worden.
+-	Expliciet maken wat er wel en niet gedaan is, en goed linken naar gerelateerd methodologisch onderzoek (thesis Lion?) en inhoudelijke toepassingen van de methode in het werk van Mariëlle Zondervan-Zwijnenburg.
+
+Drie punten, die allen betrekking hebben op welke studies we includeren en tot welke resultaten komen
+
+1.	Hoe kunnen we hard maken dat we álle relevante studies gevonden hebben (en dus binnen de grenzen van het mogelijke de relevante data hebben). 
+o	Meer formele zoekstrategie – voor mij, T, betekent dit dat ik mij moet verdiepen in de mogelijke strategieën voor zo’n ‘exhaustive search’, bijvoorbeeld PRISMA of ASReview, de volgende stap is, in overleg met V&W, de juiste zoektermen formaliseren, en deze stap daadwerkelijk uit te voeren).
+2.	Mochten we de data hebben ontvangen van álle auteurs van relevante studies, zou dit onze conclusies wezenlijk veranderen (de vraag is in welke mate we dit kunnen controleren; dat gaan we zien). Tot op zekere hoogte kunnen we hiervoor veel afleiden uit mogelijke figuren.
+3.	Als laatste, gerelateerd aan het feit dat we nooit 100% zeker kunnen zijn dat we alle relevante studies gevonden hebben, kunnen we Werners gedachtenexperiment toevoegen. Oftewel, als we starten vanuit onze selectie van studies; welke studie vond het minste support voor de relevante hypotheses (of het meest support tégen deze hypothese). Hoeveel van zulke studies hebben we nodig voordat onze conclusies fundamenteel zouden veranderen (hoe vaak moeten we de huidige totale support met deze ‘slechtste BF’ vermenigvuldigen)?
+
+Na aanleiding van deze punten:
+-	Data sectie aanpassen (zoekstrategie toevoegen; geïncludeerde studies zal veranderen)
+-	Resultaten (nieuwe studies toevoegen; maar ook inkorten, zie hierboven)
+-	Discussie (aanscherpen argumenten, bovenstaande drie punten toevoegen)
+
+\newpage
+
+
 
 \linenumbers
 
@@ -728,10 +760,12 @@ That is, the complexity is defined by the proportion of the prior that is in agr
 \setlength{\leftskip}{0.0in}
 \noindent
 
-```{r density, dpi = 300, warning = F, message = F, echo = F, fig.width=7.5, fig.height = 3.75, fig.cap = "Prior and posterior density for two regression parameters."}
+```{r density, dpi = 300, warning = F, message = F, echo = F, fig.width=7.5, fig.height = 3.75, dev='cairo_pdf', fig.cap = "Prior and posterior density for two regression parameters."}
 library(ggplot2)
 library(ggdensity)
 library(extrafont)
+
+loadfonts("win", quiet = T)
 
 f_p <- function(x, y, mean_x, mean_y, var_x, var_y, cor_xy) {
   1 / (2*pi*sqrt(var_x)*sqrt(var_y)*sqrt(1-cor_xy^2)) *
